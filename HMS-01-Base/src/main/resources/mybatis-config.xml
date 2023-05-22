@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+    <properties resource="jdbc.properties"/>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--  一般情况下，数据的字段和我们前端的字段命名规则不一样，查询数据库的时候需要加一个映射，
+        把数据库字段映射为驼峰式的字段，但是mybatis里有一个配置可以将这个转换自动化，这就是mapUnderscoreToCamelCase-->
+        <setting name="mapUnderscoreToCamelCase" value="true "/>
+        <!--  延迟加载全局开关,默认不开启,手动开启-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
+    <typeAliases>
+        <!--    type:指定给那个类型起别名 alias：指定别名  
+            注意：别名不区分大小写  alias 属性是可以省略的，有默认的别名
+         -->
+        <package name="org.apple.hotel.pojo"/>
+        <!-- <typeAlias type="com.apple.mybatis.pojo.Car" alias="Car"/>-->
+
+    </typeAliases>
+
+    <!--  在这里可以有多个环境，一个环境往往代表一个数据库，default是默认使用的数据库  -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <mappers>
+        <!-- 指定文件路径  -->
+        <!--  <mapper resource="CarMapper.xml"/>-->
+        <!--   如果使用全限定接口名，那么要求你的配置文件必须和你的接口在同一个包中     -->
+        <!--        <mapper class="com.apple.hotel.mapper.CarMapper"/>-->
+        <!--    最终写法    -->
+        <package name="org.apple.hotel.mapper"/>
+
+    </mappers>
+</configuration>

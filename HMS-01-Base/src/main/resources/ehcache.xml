@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
+    <!--磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存-->
+    <diskStore path="D:/Developers_Tools/maven/ehcache"/>
+    <!--defaultCache:默认的管理策略-->
+    <!--eternal:设定缓存的elements是否永远不过期。如果为true,则缓存的数据始终有效,如果为false那么还要根据timeToIdleSeconds,timeToLiveSeconds判断-->
+    <!--maxElementsInMemory:在内存中缓存的element的最大数目-->
+    <!--overflowToDisk:如果内存中数据超过内存限制,是否要缓存到磁盘上-->
+    <!--diskPersistent:是否在磁盘上持久化。指重启jvm后,数据是否有效。默认为false-->
+    <!--timeToIdleSeconds:对象空闲时间(单位:秒),指对象在多长时间没有被访问就会失效。只对eternal为false的有效。默认值0,表示一直可以访问-->
+    <!--timeToLiveSeconds:对象存活时间(单位:秒),指对象从创建到失效所需要的时间。只对eternal为false的有效。默认值0,表示一直可以访问-->
+    <!--memoryStoreEvictionPolicy:缓存的3种清空策略-->
+    <!--FIFO:first in first out (先进先出)-->
+    <!--LFU:Less Frequently Used(最少使用).意思是一直以来最最少被使用的。缓存的元素有一个hit属性,hit值最小的将会被清出缓存-->
+    <!--LRU:LeastRecently Used(最近最少使用).(ehcache默认值).缓存的元素有一个时间戳,当缓存容量满了,而又需要腾出地方来缓存新的元素的时候,那么现有缓存元素中时间戳离当前-->
+    <defaultCache eternal="false" maxElementsInMemory="3000" overflowToDisk="false" diskPersistent="false"
+                  timeToIdleSeconds="0" timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU"/>
+</ehcache>
