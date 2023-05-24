@@ -22,7 +22,7 @@
 
         <!--连接数据库信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/javaweb"
+                        connectionURL="jdbc:mysql://localhost:3306/hms"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -50,8 +50,10 @@
         </javaClientGenerator>
 
         <!-- 表名和对应的实体类名-->
-        <table tableName="t_user" domainObjectName="User"/>
-        <table tableName="t_room" domainObjectName="Room"/>
+        <table tableName="t_manager" domainObjectName="Manager"/>
+        <table tableName="t_menu" domainObjectName="Menu"/>
+        <table tableName="t_diningTable" domainObjectName="DiningTable"/>
+        <table tableName="t_bill" domainObjectName="Bill"/>
 
     </context>
 </generatorConfiguration>
