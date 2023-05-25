@@ -1,3 +1,4 @@
+-- 员工表
 create table t_manager
 (
     id         int auto_increment,
@@ -9,14 +10,7 @@ create table t_manager
         primary key (id)
 );
 
-insert into t_manager
-values (null, '6668612', md5('123456'), '叶文洁', '经理'),
-       (null, '6668622', md5('123456'), '史强', '服务员'),
-       (null, '6668633', md5('123456'), '汪淼', '服务员'),
-       (null, '6668666', md5('123456'), '罗辑', '经理'),
-       (null, '6668677', md5('123456'), '庄颜', '财务');
-
-
+-- 菜品表
 create table t_menu
 (
     id    int primary key auto_increment comment '自增主键，作为菜谱编号(唯一)',
@@ -25,22 +19,36 @@ create table t_menu
     price double      not null default 0 comment '价格'
 ) charset = utf8;
 
-create table t_diningTable
+-- 订单表
+create table t_order
 (
-    id         int primary key auto_increment comment '餐桌编号',
-    state      varchar(20) not null default '' comment '餐桌的状态',
-    order_Name varchar(50) not null default '' comment '预订人的名字',
-    order_Tel  varchar(20) not null default ''
+    order_id       int primary key auto_increment unique comment '订单id',
+    customer_name  varchar(20) not null default '' comment '预订人的名字',
+    table_num      varchar(50) not null default '' comment '桌号',
+    customer_phone varchar(20) not null default '顾客联系方式',
+    status         varchar(50) not null default '' comment '订单状态',
+    total_amount   int         not null comment '订单总金额',
+    create_time    datetime    not null comment '订单日期'
 ) charset = utf8;
 
-create table t_bill
+-- 菜品订单表
+create table t_dish_order
 (
-    id             int primary key auto_increment comment '自增主键',
-    bill_id        varchar(50) not null default '' comment '账单号',
-    menu_id        int         not null default 0 comment '菜品的编号, 也可以使用外键',
-    nums           SMALLINT    not null default 0 comment '份数',
-    money          double      not null default 0 comment '金额',
-    diningTable_id int         not null default 0 comment '餐桌',
-    bill_date      datetime    not null comment '订单日期',
-    state          varchar(50) not null default '' comment '状态, 未结账 ,已经结账, 挂单'#
+    dish_order_id   int primary key auto_increment comment '菜品订单',
+    order_id        int not null comment '关联订单表的订单ID',
+    dish_id         int not null comment '关联菜品表的菜品id',
+    quantity        int not null comment '菜品数量',
+    special_request varchar(40) comment '特殊要求，如辣度、口味'
 ) charset = utf8;
+
+-- 库存表
+create table t_inventory
+(
+    inventory_id varchar(20) primary key comment '库存id，唯一标识',
+    dish_id      varchar(20) not null default '' comment '关联菜品表的菜品ID',
+    quantity     int         not null comment '菜品库存数量',
+    threshold    int         not null comment '库存预警阈值'
+) charset = utf8;
+
+
+
