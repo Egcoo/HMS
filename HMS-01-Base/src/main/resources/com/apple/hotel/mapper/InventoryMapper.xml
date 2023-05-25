@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apple.hotel.mapper.InventoryMapper">
+    <resultMap id="BaseResultMap" type="com.apple.hotel.pojo.Inventory">
+        <id column="inventory_id" jdbcType="VARCHAR" property="inventoryId"/>
+        <result column="dish_id" jdbcType="VARCHAR" property="dishId"/>
+        <result column="quantity" jdbcType="INTEGER" property="quantity"/>
+        <result column="threshold" jdbcType="INTEGER" property="threshold"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        inventory_id
+        , dish_id, quantity, threshold
+    </sql>
+    <select id="selectByExample" parameterType="com.apple.hotel.pojo.InventoryExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from t_inventory
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_inventory
+        where inventory_id = #{inventoryId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from t_inventory
+        where inventory_id = #{inventoryId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.apple.hotel.pojo.InventoryExample">
+        delete from t_inventory
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.apple.hotel.pojo.Inventory">
+        insert into t_inventory (inventory_id, dish_id, quantity,
+                                 threshold)
+        values (#{inventoryId,jdbcType=VARCHAR}, #{dishId,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER},
+                #{threshold,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.apple.hotel.pojo.Inventory">
+        insert into t_inventory
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="inventoryId != null">
+                inventory_id,
+            </if>
+            <if test="dishId != null">
+                dish_id,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="threshold != null">
+                threshold,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="inventoryId != null">
+                #{inventoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="dishId != null">
+                #{dishId,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="threshold != null">
+                #{threshold,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.apple.hotel.pojo.InventoryExample" resultType="java.lang.Long">
+        select count(*) from t_inventory
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_inventory
+        <set>
+            <if test="row.inventoryId != null">
+                inventory_id = #{row.inventoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.dishId != null">
+                dish_id = #{row.dishId,jdbcType=VARCHAR},
+            </if>
+            <if test="row.quantity != null">
+                quantity = #{row.quantity,jdbcType=INTEGER},
+            </if>
+            <if test="row.threshold != null">
+                threshold = #{row.threshold,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_inventory
+        set inventory_id = #{row.inventoryId,jdbcType=VARCHAR},
+        dish_id = #{row.dishId,jdbcType=VARCHAR},
+        quantity = #{row.quantity,jdbcType=INTEGER},
+        threshold = #{row.threshold,jdbcType=INTEGER}
+        <if test="example != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.apple.hotel.pojo.Inventory">
+        update t_inventory
+        <set>
+            <if test="dishId != null">
+                dish_id = #{dishId,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity,jdbcType=INTEGER},
+            </if>
+            <if test="threshold != null">
+                threshold = #{threshold,jdbcType=INTEGER},
+            </if>
+        </set>
+        where inventory_id = #{inventoryId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.apple.hotel.pojo.Inventory">
+        update t_inventory
+        set dish_id   = #{dishId,jdbcType=VARCHAR},
+            quantity  = #{quantity,jdbcType=INTEGER},
+            threshold = #{threshold,jdbcType=INTEGER}
+        where inventory_id = #{inventoryId,jdbcType=VARCHAR}
+    </update>
+</mapper>

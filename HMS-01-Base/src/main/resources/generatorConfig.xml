@@ -52,8 +52,9 @@
         <!-- 表名和对应的实体类名-->
         <table tableName="t_manager" domainObjectName="Manager"/>
         <table tableName="t_menu" domainObjectName="Menu"/>
-        <table tableName="t_diningTable" domainObjectName="DiningTable"/>
-        <table tableName="t_bill" domainObjectName="Bill"/>
+        <table tableName="t_order" domainObjectName="Order"/>
+        <table tableName="t_dish_order" domainObjectName="DishOrder"/>
+        <table tableName="t_inventory" domainObjectName="Inventory"/>
 
     </context>
 </generatorConfiguration>
