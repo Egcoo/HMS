@@ -1,31 +1,23 @@
 package com.apple.hotel.mapper;
 
 import com.apple.hotel.pojo.Manager;
-import com.apple.hotel.pojo.ManagerExample;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * @author Egcoo
+ */
 public interface ManagerMapper {
-    long countByExample(ManagerExample example);
 
-    int deleteByExample(ManagerExample example);
+    int insertEmployee(Manager manager);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteEmployee(Integer managerid);
 
-    int insert(Manager row);
+    int updateEmployee(Integer managerid);
 
-    int insertSelective(Manager row);
+    Manager getEmployeeById(Integer id);
 
-    List<Manager> selectByExample(ManagerExample example);
+    Manager getEmployeeByName(String name);
 
-    Manager selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("row") Manager row, @Param("example") ManagerExample example);
-
-    int updateByExample(@Param("row") Manager row, @Param("example") ManagerExample example);
-
-    int updateByPrimaryKeySelective(Manager row);
-
-    int updateByPrimaryKey(Manager row);
+    List<Manager> getAllEmployees();
 }

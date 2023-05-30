@@ -20,6 +20,17 @@ public class Menu {
                 '}';
     }
 
+    public Menu() {
+
+    }
+
+    public Menu(Integer id, String name, String type, Double price) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

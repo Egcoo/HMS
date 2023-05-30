@@ -2,6 +2,7 @@ package com.apple.hotel.service;
 
 import com.apple.hotel.pojo.Manager;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface ManagerService {
      * @param manager
      * @return
      */
-    boolean addEmployee(Manager manager);
+    boolean addEmployee(Manager manager) throws IOException;
 
     /**
      * 删除员工
@@ -29,10 +30,10 @@ public interface ManagerService {
     /**
      * 更新员工信息
      *
-     * @param manager
+     * @param managerid
      * @return
      */
-    boolean updateEmployee(Manager manager);
+    boolean updateEmployee(Integer managerid);
 
     /**
      * 获取员工详情
@@ -41,6 +42,14 @@ public interface ManagerService {
      * @return
      */
     Manager getEmployeeDetails(Integer managerId);
+
+    /**
+     * 根据员工名字获取信息
+     *
+     * @param managerName
+     * @return
+     */
+    Manager getEmployeeDetailsByName(String managerName);
 
     /**
      * 获取员工列表

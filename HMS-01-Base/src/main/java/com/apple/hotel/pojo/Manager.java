@@ -22,6 +22,18 @@ public class Manager {
                 '}';
     }
 
+    public Manager() {
+
+    }
+
+    public Manager(Integer id, String managerId, String pwd, String name, String job) {
+        this.id = id;
+        this.managerId = managerId;
+        this.pwd = pwd;
+        this.name = name;
+        this.job = job;
+    }
+
     public Integer getId() {
         return id;
     }

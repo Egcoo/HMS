@@ -10,6 +10,14 @@ create table t_manager
         primary key (id)
 );
 
+-- 初始数据
+insert into t_manager
+values (null, '6668612', md5('123456'), '叶文洁', '经理'),
+       (null, '6668622', md5('123456'), '史强', '服务员'),
+       (null, '6668633', md5('123456'), '汪淼', '服务员'),
+       (null, '6668666', md5('123456'), '罗辑', '经理'),
+       (null, '6668677', md5('123456'), '庄颜', '财务');
+
 -- 菜品表
 create table t_menu
 (

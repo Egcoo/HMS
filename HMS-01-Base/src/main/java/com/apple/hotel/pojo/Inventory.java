@@ -9,6 +9,15 @@ public class Inventory {
 
     private Integer threshold;
 
+    public Inventory() {
+    }
+
+    public Inventory(String inventoryId, String dishId, Integer quantity, Integer threshold) {
+        this.inventoryId = inventoryId;
+        this.dishId = dishId;
+        this.quantity = quantity;
+        this.threshold = threshold;
+    }
 
     @Override
     public String toString() {

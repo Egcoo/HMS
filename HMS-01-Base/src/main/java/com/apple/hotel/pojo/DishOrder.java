@@ -11,6 +11,17 @@ public class DishOrder {
 
     private String specialRequest;
 
+    public DishOrder() {
+    }
+
+    public DishOrder(Integer dishOrderId, Integer orderId, Integer dishId, Integer quantity, String specialRequest) {
+        this.dishOrderId = dishOrderId;
+        this.orderId = orderId;
+        this.dishId = dishId;
+        this.quantity = quantity;
+        this.specialRequest = specialRequest;
+    }
+
     @Override
     public String toString() {
         return "DishOrder{" +

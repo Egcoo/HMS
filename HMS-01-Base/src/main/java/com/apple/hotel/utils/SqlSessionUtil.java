@@ -29,7 +29,7 @@ public class SqlSessionUtil {
     //工具类的构造方法一般都是私有化的
     //工具类的方法都是静态的,直接采用类名调用即可，不需要new对象
     // 为了防止new对象，构造方法私有化
-    private SqlSessionUtil() {
+    public SqlSessionUtil() {
     }
 
     public static SqlSession openSqlSession() throws IOException {

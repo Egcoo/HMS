@@ -18,7 +18,7 @@
         <!--    type:指定给那个类型起别名 alias：指定别名  
             注意：别名不区分大小写  alias 属性是可以省略的，有默认的别名
          -->
-        <package name="org.apple.hotel.pojo"/>
+        <package name="com.apple.hotel.pojo"/>
         <!-- <typeAlias type="com.apple.mybatis.pojo.Car" alias="Car"/>-->
 
     </typeAliases>
@@ -43,7 +43,7 @@
         <!--   如果使用全限定接口名，那么要求你的配置文件必须和你的接口在同一个包中     -->
         <!--        <mapper class="com.apple.hotel.mapper.CarMapper"/>-->
         <!--    最终写法    -->
-        <package name="org.apple.hotel.mapper"/>
+        <package name="com.apple.hotel.mapper"/>
 
     </mappers>
 </configuration>

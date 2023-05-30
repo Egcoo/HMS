@@ -17,6 +17,19 @@ public class Order {
 
     private Date createTime;
 
+    public Order() {
+    }
+
+    public Order(Integer orderId, String customerName, String tableNum, String customerPhone, String status, Integer totalAmount, Date createTime) {
+        this.orderId = orderId;
+        this.customerName = customerName;
+        this.tableNum = tableNum;
+        this.customerPhone = customerPhone;
+        this.status = status;
+        this.totalAmount = totalAmount;
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
