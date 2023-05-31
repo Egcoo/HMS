@@ -5,7 +5,7 @@
 
     <insert id="insertEmployee">
         insert into t_manager (id, manager_id, pwd, name, job)
-        values (null, #{managerId}, #{pwd}, #{name}, #{job});
+        values (null, #{managerId}, md5(#{pwd}), #{name}, #{job});
     </insert>
 
     <delete id="deleteEmployee">

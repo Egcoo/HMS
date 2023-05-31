@@ -15,6 +15,8 @@ public class SqlSessionUtil {
 
     // 定义一个静态变量
     private static SqlSessionFactory sqlSessionFactory;
+    // 全局的、服务器级别的，一个服务器定义一个即可
+    private static final ThreadLocal<SqlSession> local = new ThreadLocal<>();
 
     static {
         // 类加载时候执行
@@ -33,8 +35,27 @@ public class SqlSessionUtil {
     }
 
     public static SqlSession openSqlSession() throws IOException {
+        // 保证在同一个线程中是同一个线程对象
+        SqlSession sqlSession = local.get();
+        if (sqlSession == null) {
+            sqlSession = sqlSessionFactory.openSession();
+            local.set(sqlSession);
+        }
+        return sqlSession;
+    }
 
-        return sqlSessionFactory.openSession();
+
+    /**
+     * 关闭SqlSession，从当前线程移除SqlSession
+     *
+     * @param sqlSession
+     */
+    public static void closeSqlSession(SqlSession sqlSession) {
+        if (sqlSession != null) {
+            sqlSession.close();
+            //移除sqlSession 对象和当前线程的绑定关系
+            local.remove();
+        }
     }
 
 }

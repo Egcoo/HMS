@@ -20,7 +20,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     private static final Logger logger = LoggerFactory.getLogger(ManagerServiceImpl.class);
     private ManagerMapper managerMapper = SqlSessionUtil.openSqlSession().getMapper(ManagerMapper.class);
-    ;
+
 
     public ManagerServiceImpl() throws IOException {
 
@@ -35,6 +35,9 @@ public class ManagerServiceImpl implements ManagerService {
         } catch (Exception e) {
             logger.error("Failed to add employee: " + e.getMessage());
             return false;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
 
     }
