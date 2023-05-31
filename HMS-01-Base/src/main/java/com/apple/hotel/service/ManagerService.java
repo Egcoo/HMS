@@ -25,7 +25,7 @@ public interface ManagerService {
      * @param managerId
      * @return
      */
-    boolean removeEmployee(Integer managerId);
+    boolean removeEmployee(Integer managerId) throws IOException;
 
     /**
      * 更新员工信息
@@ -33,7 +33,7 @@ public interface ManagerService {
      * @param managerid
      * @return
      */
-    boolean updateEmployee(Integer managerid);
+    boolean updateEmployee(Integer managerid) throws IOException;
 
     /**
      * 获取员工详情
@@ -41,7 +41,7 @@ public interface ManagerService {
      * @param managerId
      * @return
      */
-    Manager getEmployeeDetails(Integer managerId);
+    Manager getEmployeeDetails(Integer managerId) throws IOException;
 
     /**
      * 根据员工名字获取信息
@@ -49,12 +49,12 @@ public interface ManagerService {
      * @param managerName
      * @return
      */
-    Manager getEmployeeDetailsByName(String managerName);
+    Manager getEmployeeDetailsByName(String managerName) throws IOException;
 
     /**
      * 获取员工列表
      *
      * @return
      */
-    List<Manager> getEmployeeList();
+    List<Manager> getEmployeeList() throws IOException;
 }

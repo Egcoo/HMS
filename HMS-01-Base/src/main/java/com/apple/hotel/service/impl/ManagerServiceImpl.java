@@ -39,59 +39,78 @@ public class ManagerServiceImpl implements ManagerService {
             sqlSession.commit();
             SqlSessionUtil.closeSqlSession(sqlSession);
         }
-
     }
 
     @Override
-    public boolean removeEmployee(Integer managerId) {
+    public boolean removeEmployee(Integer managerId) throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             int rowsAffected = managerMapper.deleteEmployee(managerId);
             return rowsAffected > 0;
         } catch (Exception e) {
             logger.error("Failed to remove employee: " + e.getMessage());
             return false;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
     }
 
     @Override
-    public boolean updateEmployee(Integer managerId) {
+    public boolean updateEmployee(Integer managerId) throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             int rowsAffected = managerMapper.updateEmployee(managerId);
             return rowsAffected > 0;
         } catch (Exception e) {
             logger.error("Failed to update employee: " + e.getMessage());
             return false;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
     }
 
     @Override
-    public Manager getEmployeeDetails(Integer managerId) {
+    public Manager getEmployeeDetails(Integer managerId) throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             return managerMapper.getEmployeeById(managerId);
         } catch (Exception e) {
             logger.error("Failed to retrieve employee details: " + e.getMessage());
             return null;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
     }
 
     @Override
-    public Manager getEmployeeDetailsByName(String managerName) {
+    public Manager getEmployeeDetailsByName(String managerName) throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             return managerMapper.getEmployeeByName(managerName);
         } catch (Exception e) {
             logger.error("Failed to retrieve employee details: " + e.getMessage());
             return null;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
     }
 
 
     @Override
-    public List<Manager> getEmployeeList() {
+    public List<Manager> getEmployeeList() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             return managerMapper.getAllEmployees();
         } catch (Exception e) {
             logger.error("Failed to retrieve employee list: " + e.getMessage());
             return null;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
         }
     }
 }
