@@ -5,6 +5,7 @@ import com.apple.hotel.service.impl.ManagerServiceImpl;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -33,8 +34,11 @@ public class ManagerTest {
      * @return
      */
     @Test
-    public void removeEmployeeTest() {
-
+    public void removeEmployeeTest() throws IOException {
+        ManagerServiceImpl managerService = null;
+        managerService = new ManagerServiceImpl();
+        boolean removeEmployee = managerService.removeEmployee("6668665");
+        System.out.println(removeEmployee);
     }
 
     /**
@@ -43,7 +47,12 @@ public class ManagerTest {
      * @return
      */
     @Test
-    public void updateEmployeeTest() {
+    public void updateEmployeeTest() throws IOException {
+        ManagerServiceImpl managerService = null;
+        managerService = new ManagerServiceImpl();
+        Manager manager = new Manager(null, "6668775", "123456", "杨冬", "物理学家");
+        boolean updateEmployee = managerService.updateEmployee(manager);
+        System.out.println(updateEmployee);
 
     }
 
@@ -54,7 +63,25 @@ public class ManagerTest {
      * @return
      */
     @Test
-    public void getEmployeeDetailsTest() {
+    public void getEmployeeDetailsTest() throws IOException {
+        ManagerServiceImpl managerService = null;
+        managerService = new ManagerServiceImpl();
+        Manager manager = managerService.getEmployeeDetailsById("6668775");
+        System.out.println(manager);
+    }
+
+    /**
+     * 获取员工详情
+     *
+     * @param
+     * @return
+     */
+    @Test
+    public void getEmployeeDetailsByNameTest() throws IOException {
+        ManagerServiceImpl managerService = null;
+        managerService = new ManagerServiceImpl();
+        Manager manager = managerService.getEmployeeDetailsByName("杨冬");
+        System.out.println(manager);
     }
 
     /**
@@ -63,7 +90,10 @@ public class ManagerTest {
      * @return
      */
     @Test
-    public void getEmployeeListTest() {
-
+    public void getEmployeeListTest() throws IOException {
+        ManagerServiceImpl managerService = null;
+        managerService = new ManagerServiceImpl();
+        List<Manager> managerList = managerService.getEmployeeList();
+        System.out.println(managerList);
     }
 }

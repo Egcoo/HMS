@@ -2,6 +2,7 @@ package com.apple.hotel.service;
 
 import com.apple.hotel.pojo.Menu;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,7 +17,16 @@ public interface MenuService {
      * @param menu
      * @return
      */
-    boolean addMenu(Menu menu);
+    boolean addMenu(Menu menu) throws IOException;
+
+    /**
+     * 删除菜品
+     *
+     * @param menu_id
+     * @return
+     * @throws IOException
+     */
+    boolean delMenu(Integer menu_id) throws IOException;
 
     /**
      * 更新菜品详情
@@ -24,7 +34,7 @@ public interface MenuService {
      * @param menu
      * @return
      */
-    boolean updateMenu(Menu menu);
+    boolean updateMenu(Menu menu) throws IOException;
 
     /**
      * 获取单个菜品详情
@@ -32,14 +42,14 @@ public interface MenuService {
      * @param menuId
      * @return
      */
-    Menu getMenuDetails(Integer menuId);
+    Menu getMenuDetailsById(Integer menuId) throws IOException;
 
     /**
      * 获取菜单列表
      *
      * @return
      */
-    List<Menu> getMenuList();
+    List<Menu> getMenuList() throws IOException;
 
     /**
      * 将菜品添加到菜品订单中
@@ -47,13 +57,13 @@ public interface MenuService {
      * @param menuId
      * @param dishId
      */
-    void addDishToMenu(Integer menuId, Integer dishId);
+    boolean addDishToMenu(Integer menuId, Integer dishId) throws IOException;
 
     /**
-     * 从菜单中移除菜品
+     * 从菜单订单中移除菜品
      *
      * @param menuId
      * @param dishId
      */
-    void removeDishFromMenu(Integer menuId, Integer dishId);
+    boolean removeDishFromMenu(Integer menuId, Integer dishId) throws IOException;
 }

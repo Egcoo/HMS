@@ -42,7 +42,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public boolean removeEmployee(Integer managerId) throws IOException {
+    public boolean removeEmployee(String managerId) throws IOException {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             int rowsAffected = managerMapper.deleteEmployee(managerId);
@@ -57,10 +57,10 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public boolean updateEmployee(Integer managerId) throws IOException {
+    public boolean updateEmployee(Manager manager) throws IOException {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
-            int rowsAffected = managerMapper.updateEmployee(managerId);
+            int rowsAffected = managerMapper.updateEmployee(manager);
             return rowsAffected > 0;
         } catch (Exception e) {
             logger.error("Failed to update employee: " + e.getMessage());
@@ -72,7 +72,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public Manager getEmployeeDetails(Integer managerId) throws IOException {
+    public Manager getEmployeeDetailsById(String managerId) throws IOException {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
             return managerMapper.getEmployeeById(managerId);

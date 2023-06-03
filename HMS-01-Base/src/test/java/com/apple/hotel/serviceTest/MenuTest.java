@@ -3,8 +3,6 @@ package com.apple.hotel.serviceTest;
 import com.apple.hotel.pojo.Menu;
 import org.junit.Test;
 
-import java.util.List;
-
 /**
  * @ author Egcoo
  * @ date 2023/5/28 - 0:01
@@ -18,8 +16,8 @@ public class MenuTest {
      * @return
      */
     @Test
-    public boolean addMenuTest(Menu menu) {
-        return true;
+    public void addMenuTest(Menu menu) {
+
     }
 
     /**
@@ -29,8 +27,7 @@ public class MenuTest {
      * @return
      */
     @Test
-    boolean updateMenu(Menu menu) {
-        return true;
+    public void updateMenu(Menu menu) {
     }
 
     /**
@@ -40,8 +37,7 @@ public class MenuTest {
      * @return
      */
     @Test
-    public Menu getMenuDetailsTest(Integer menuId) {
-        return null;
+    public void getMenuDetailsTest(Integer menuId) {
     }
 
     /**
@@ -50,8 +46,7 @@ public class MenuTest {
      * @return
      */
     @Test
-    List<Menu> getMenuListTest() {
-        return null;
+    public void getMenuListTest() {
     }
 
     /**

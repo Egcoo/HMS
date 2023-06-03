@@ -11,33 +11,29 @@
     <delete id="deleteEmployee">
         delete
         from t_manager
-        where id = #{id}
+        where manager_id = #{managerId}
     </delete>
 
     <update id="updateEmployee">
         update t_manager
         set manager_id = #{managerId},
-            pwd        = #{pwd},
+            pwd        = md5(#{pwd}),
             name       = #{name},
             job        = #{job}
-        where id = #{id};
+        where manager_id = #{managerId};
     </update>
 
 
     <select id="getEmployeeById">
-        select id,
-               manager_id as managerId,
-               pwd,
+        select manager_id as managerId,
                name,
                job
         from t_manager
-        where id = #{id};
+        where manager_id = #{managerId};
     </select>
 
     <select id="getEmployeeByName">
-        select id,
-               manager_id as managerId,
-               pwd,
+        select manager_id as managerId,
                name,
                job
         from t_manager
@@ -45,10 +41,8 @@
     </select>
 
     <sql id="managerColumnNameSql">
-        id
-        ,
-        manager_id as managerId,
-        pwd,
+        manager_id
+        as managerId,
         name,
         job
     </sql>
