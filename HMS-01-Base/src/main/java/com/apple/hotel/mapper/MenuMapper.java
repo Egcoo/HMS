@@ -8,17 +8,16 @@ public interface MenuMapper {
 
     int addMenu(Menu menu);
 
-    int delMenu(Integer id);
+    int delMenu(String name);
 
     int updateMenu(Menu menu);
 
 
     Menu getMenuById(Integer menuId);
 
+    Menu getMenuByName(String name);
+
     List<Menu> getAllMenus();
 
 
-    int removeDishFromMenu(Integer menuId, Integer dishId);
-
-    int addDishToMenu(Integer menuId, Integer dishId);
 }

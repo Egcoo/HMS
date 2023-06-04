@@ -41,13 +41,13 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public boolean delMenu(Integer menu_id) throws IOException {
+    public boolean delMenu(String name) throws IOException {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
-            int rowsAffected = menuMapper.delMenu(menu_id);
+            int rowsAffected = menuMapper.delMenu(name);
             return rowsAffected > 0;
         } catch (Exception e) {
-            logger.error("Failed to delete menu: {}", menu_id, e);
+            logger.error("Failed to delete menu: {}", name, e);
             return false;
         } finally {
             sqlSession.commit();
@@ -86,6 +86,21 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public Menu getMenuDetailsByName(String name) throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
+        try {
+            return menuMapper.getMenuByName(name);
+        } catch (Exception e) {
+            logger.error("Failed to get menu details for name: {}", name, e);
+            return null;
+        } finally {
+            sqlSession.commit();
+            SqlSessionUtil.closeSqlSession(sqlSession);
+        }
+    }
+
+
+    @Override
     public List<Menu> getMenuList() throws IOException {
         SqlSession sqlSession = SqlSessionUtil.openSqlSession();
         try {
@@ -99,33 +114,5 @@ public class MenuServiceImpl implements MenuService {
         }
     }
 
-    @Override
-    public boolean addDishToMenu(Integer menuId, Integer dishId) throws IOException {
-        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
-        try {
-            int rowsAffected = menuMapper.addDishToMenu(menuId, dishId);
-            return rowsAffected > 0;
-        } catch (Exception e) {
-            logger.error("Failed to add dish {} to menuId: {}", dishId, menuId, e);
-            return false;
-        } finally {
-            sqlSession.commit();
-            SqlSessionUtil.closeSqlSession(sqlSession);
-        }
-    }
 
-    @Override
-    public boolean removeDishFromMenu(Integer menuId, Integer dishId) throws IOException {
-        SqlSession sqlSession = SqlSessionUtil.openSqlSession();
-        try {
-            int rowsAffected = menuMapper.removeDishFromMenu(menuId, dishId);
-            return rowsAffected > 0;
-        } catch (Exception e) {
-            logger.error("Failed to remove dish {} from menuId: {}", dishId, menuId, e);
-            return false;
-        } finally {
-            sqlSession.commit();
-            SqlSessionUtil.closeSqlSession(sqlSession);
-        }
-    }
 }

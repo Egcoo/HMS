@@ -39,4 +39,34 @@ public class DishServiceImpl implements DishService {
     public List<DishOrder> getDishesByCategory(String category) {
         return null;
     }
+
+    //@Override
+    //public boolean addDishToMenu(Integer menuId, Integer dishId) throws IOException {
+    //    SqlSession sqlSession = SqlSessionUtil.openSqlSession();
+    //    try {
+    //        int rowsAffected = DishOrderMapper.addDishToMenu(menuId, dishId);
+    //        return rowsAffected > 0;
+    //    } catch (Exception e) {
+    //        logger.error("Failed to add dish {} to menuId: {}", dishId, menuId, e);
+    //        return false;
+    //    } finally {
+    //        sqlSession.commit();
+    //        SqlSessionUtil.closeSqlSession(sqlSession);
+    //    }
+    //}
+    //
+    //@Override
+    //public boolean removeDishFromDishOrder(Integer menuId, Integer dishId) throws IOException {
+    //    SqlSession sqlSession = SqlSessionUtil.openSqlSession();
+    //    try {
+    //        int rowsAffected = menuMapper.removeDishFromMenu(menuId, dishId);
+    //        return rowsAffected > 0;
+    //    } catch (Exception e) {
+    //        logger.error("Failed to remove dish {} from menuId: {}", dishId, menuId, e);
+    //        return false;
+    //    } finally {
+    //        sqlSession.commit();
+    //        SqlSessionUtil.closeSqlSession(sqlSession);
+    //    }
+    //}
 }

@@ -2,4 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.apple.hotel.mapper.MenuMapper">
 
+    <insert id="addMenu">
+        insert into t_menu (id, name, type, price)
+        values (null, #{name}, #{type}, #{price});
+    </insert>
+
+    <delete id="delMenu">
+        delete
+        from t_menu
+        where name = #{name}
+    </delete>
+
+    <update id="updateMenu">
+        update t_menu
+        set name  = #{name},
+            type  = #{type},
+            price = #{price}
+        where name = #{name};
+    </update>
+
+
+    <select id="getMenuById">
+        select id,
+               name,
+               type,
+               price
+        from t_menu
+        where id = #{id};
+    </select>
+
+    <select id="getMenuByName">
+        select id,
+               name,
+               type,
+               price
+        from t_menu
+        where name = #{name};
+    </select>
+
+
+    <sql id="menuColumnNameSql">
+        id
+        ,
+        name,
+        type,
+        price
+    </sql>
+
+    <select id="getAllMenus">
+        select
+        <include refid="menuColumnNameSql"/>
+        from t_menu;
+    </select>
+
 </mapper>

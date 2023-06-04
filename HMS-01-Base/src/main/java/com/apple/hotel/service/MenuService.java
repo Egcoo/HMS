@@ -22,11 +22,11 @@ public interface MenuService {
     /**
      * 删除菜品
      *
-     * @param menu_id
+     * @param name
      * @return
      * @throws IOException
      */
-    boolean delMenu(Integer menu_id) throws IOException;
+    boolean delMenu(String name) throws IOException;
 
     /**
      * 更新菜品详情
@@ -45,11 +45,21 @@ public interface MenuService {
     Menu getMenuDetailsById(Integer menuId) throws IOException;
 
     /**
+     * 通过名字查菜品详情
+     *
+     * @param name
+     * @return
+     * @throws IOException
+     */
+    Menu getMenuDetailsByName(String name) throws IOException;
+
+    /**
      * 获取菜单列表
      *
      * @return
      */
     List<Menu> getMenuList() throws IOException;
+
 
     /**
      * 将菜品添加到菜品订单中
@@ -57,7 +67,7 @@ public interface MenuService {
      * @param menuId
      * @param dishId
      */
-    boolean addDishToMenu(Integer menuId, Integer dishId) throws IOException;
+    //boolean addDishToMenu(Integer menuId, Integer dishId) throws IOException;
 
     /**
      * 从菜单订单中移除菜品
@@ -65,5 +75,6 @@ public interface MenuService {
      * @param menuId
      * @param dishId
      */
-    boolean removeDishFromMenu(Integer menuId, Integer dishId) throws IOException;
+    //boolean removeDishFromMenu(Integer menuId, Integer dishId) throws IOException;
+
 }
